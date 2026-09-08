@@ -14,6 +14,7 @@ import {speak} from '../speech/speak';
 import {Stopwatch, logLatency} from '../utils/latency';
 import {Button} from '../components/Button';
 import {FlipCameraButton} from '../components/FlipCameraButton';
+import {SkeletonToggleButton} from '../components/SkeletonToggleButton';
 import {StatBand} from '../components/StatBand';
 import {ProgressBar} from '../components/ProgressBar';
 import {Reveal} from '../components/Reveal';
@@ -25,6 +26,7 @@ export function RecognitionScreen(_props: Props) {
   const recorder = useGestureRecorder();
   const [result, setResult] = useState<RecognitionResult | null>(null);
   const [cameraPosition, setCameraPosition] = useState<'front' | 'back'>('front');
+  const [showSkeleton, setShowSkeleton] = useState(true);
   const [handPresent, setHandPresent] = useState(false);
   const isRecording = recorder.status === 'recording';
 
@@ -76,13 +78,20 @@ export function RecognitionScreen(_props: Props) {
       <LandmarkCamera
         onFrame={recorder.pushFrame}
         position={cameraPosition}
+        showSkeleton={showSkeleton}
         onHandPresenceChange={setHandPresent}
       />
 
       <SafeAreaView style={styles.topControls} edges={['top']} pointerEvents="box-none">
-        <View style={styles.statusPill}>
-          <View style={[styles.statusDot, {backgroundColor: handPresent ? colors.spark : colors.ink300}]} />
-          <Text style={styles.statusText}>{handPresent ? 'HAND DETECTED' : 'NO HAND'}</Text>
+        <View style={styles.topRow}>
+          <View style={styles.statusPill}>
+            <View style={[styles.statusDot, {backgroundColor: handPresent ? colors.spark : colors.ink300}]} />
+            <Text style={styles.statusText}>{handPresent ? 'HAND DETECTED' : 'NO HAND'}</Text>
+          </View>
+          <SkeletonToggleButton
+            active={showSkeleton}
+            onPress={() => setShowSkeleton(s => !s)}
+          />
         </View>
         <FlipCameraButton
           onPress={() => setCameraPosition(p => (p === 'front' ? 'back' : 'front'))}
@@ -144,6 +153,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingLeft: space[4],
+    paddingRight: space[4],
+  },
+  topRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: space[2],
+    marginTop: space[4],
   },
   statusPill: {
     flexDirection: 'row',
@@ -152,7 +168,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(18,17,15,0.55)',
     paddingHorizontal: space[3],
     paddingVertical: space[2],
-    marginTop: space[4],
   },
   statusDot: {width: 8, height: 8},
   statusText: {
