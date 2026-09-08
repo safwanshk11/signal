@@ -116,4 +116,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    // Google MediaPipe Tasks Vision — on-device HandLandmarker used by
+    // src/main/java/com/signalapp/frameprocessors/HandLandmarkerFrameProcessorPlugin.kt.
+    // Fully offline: the .task model is bundled locally in src/main/assets/, no
+    // network calls are made at inference time.
+    implementation("com.google.mediapipe:tasks-vision:0.10.14")
 }

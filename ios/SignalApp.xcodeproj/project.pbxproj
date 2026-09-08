@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* SignalAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SignalAppTests.m */; };
+		094685D1DA644FDD20F6FFE7 /* hand_landmarker.task in Resources */ = {isa = PBXBuildFile; fileRef = C498CFFB7FB1EF850048022B /* hand_landmarker.task */; };
 		0C80B921A6F3F58F76C31292 /* libPods-SignalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-SignalApp.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		25876E2217BE69A79AA234C4 /* Archivo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8342E18F87E03AA740D14801 /* Archivo-Regular.ttf */; };
+		55638109657CBED231665A26 /* ArchivoExpanded-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8980C5375799C95216F6CA1 /* ArchivoExpanded-ExtraBold.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-SignalApp-SignalAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SignalApp-SignalAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8DF368E2CAE915AE24026CA6 /* Archivo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A82464433BAC20E7B1091701 /* Archivo-Medium.ttf */; };
+		9F88505A31E286D5414FB251 /* ArchivoExpanded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2381E5E6E2D5D9FF983A9F3F /* ArchivoExpanded-Bold.ttf */; };
+		A5C1F0AD788A557FF16FAB54 /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F86F059B61629F004AF73A40 /* IBMPlexMono-Medium.ttf */; };
+		B4DFAAA185D3BE3B499B99D2 /* IBMPlexMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0122B7BA854C39A7C82323AE /* IBMPlexMono-Regular.ttf */; };
+		C6F4D2ACCEC32CB3DB0D26DC /* Archivo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA022E6BB84A3D3AABB32776 /* Archivo-Bold.ttf */; };
+		CC0DFBD59A89F5D851B1B13D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 886A14FFE817C1D95B3A9C08 /* PrivacyInfo.xcprivacy */; };
+		E35B9E46271ADDF2722B8808 /* Archivo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8622AF69FDEAD009EA71767E /* Archivo-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +40,7 @@
 		00E356EE1AD99517003FC87E /* SignalAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignalAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SignalAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignalAppTests.m; sourceTree = "<group>"; };
+		0122B7BA854C39A7C82323AE /* IBMPlexMono-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "IBMPlexMono-Regular.ttf"; path = "SignalApp/Fonts/IBMPlexMono-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SignalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SignalApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = SignalApp/AppDelegate.mm; sourceTree = "<group>"; };
@@ -38,13 +49,22 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SignalApp/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = SignalApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-SignalApp-SignalAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SignalApp-SignalAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2381E5E6E2D5D9FF983A9F3F /* ArchivoExpanded-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "ArchivoExpanded-Bold.ttf"; path = "SignalApp/Fonts/ArchivoExpanded-Bold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-SignalApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignalApp.debug.xcconfig"; path = "Target Support Files/Pods-SignalApp/Pods-SignalApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-SignalApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignalApp.release.xcconfig"; path = "Target Support Files/Pods-SignalApp/Pods-SignalApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-SignalApp-SignalAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignalApp-SignalAppTests.debug.xcconfig"; path = "Target Support Files/Pods-SignalApp-SignalAppTests/Pods-SignalApp-SignalAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-SignalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SignalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SignalApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8342E18F87E03AA740D14801 /* Archivo-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Archivo-Regular.ttf"; path = "SignalApp/Fonts/Archivo-Regular.ttf"; sourceTree = "<group>"; };
+		8622AF69FDEAD009EA71767E /* Archivo-SemiBold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Archivo-SemiBold.ttf"; path = "SignalApp/Fonts/Archivo-SemiBold.ttf"; sourceTree = "<group>"; };
+		886A14FFE817C1D95B3A9C08 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SignalApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SignalApp-SignalAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignalApp-SignalAppTests.release.xcconfig"; path = "Target Support Files/Pods-SignalApp-SignalAppTests/Pods-SignalApp-SignalAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		A82464433BAC20E7B1091701 /* Archivo-Medium.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Archivo-Medium.ttf"; path = "SignalApp/Fonts/Archivo-Medium.ttf"; sourceTree = "<group>"; };
+		B8980C5375799C95216F6CA1 /* ArchivoExpanded-ExtraBold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "ArchivoExpanded-ExtraBold.ttf"; path = "SignalApp/Fonts/ArchivoExpanded-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C498CFFB7FB1EF850048022B /* hand_landmarker.task */ = {isa = PBXFileReference; includeInIndex = 1; name = hand_landmarker.task; path = SignalApp/Resources/hand_landmarker.task; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F86F059B61629F004AF73A40 /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "IBMPlexMono-Medium.ttf"; path = "SignalApp/Fonts/IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
+		FA022E6BB84A3D3AABB32776 /* Archivo-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Archivo-Bold.ttf"; path = "SignalApp/Fonts/Archivo-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +114,9 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				886A14FFE817C1D95B3A9C08 /* PrivacyInfo.xcprivacy */,
+				9413BB4123E317D6EECC311A /* Resources */,
+				A904083E60A024E9548E794B /* Fonts */,
 			);
 			name = SignalApp;
 			sourceTree = "<group>";
@@ -137,6 +160,29 @@
 				00E356EE1AD99517003FC87E /* SignalAppTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9413BB4123E317D6EECC311A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C498CFFB7FB1EF850048022B /* hand_landmarker.task */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A904083E60A024E9548E794B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FA022E6BB84A3D3AABB32776 /* Archivo-Bold.ttf */,
+				2381E5E6E2D5D9FF983A9F3F /* ArchivoExpanded-Bold.ttf */,
+				B8980C5375799C95216F6CA1 /* ArchivoExpanded-ExtraBold.ttf */,
+				A82464433BAC20E7B1091701 /* Archivo-Medium.ttf */,
+				8342E18F87E03AA740D14801 /* Archivo-Regular.ttf */,
+				8622AF69FDEAD009EA71767E /* Archivo-SemiBold.ttf */,
+				F86F059B61629F004AF73A40 /* IBMPlexMono-Medium.ttf */,
+				0122B7BA854C39A7C82323AE /* IBMPlexMono-Regular.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -245,6 +291,16 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				CC0DFBD59A89F5D851B1B13D /* PrivacyInfo.xcprivacy in Resources */,
+				094685D1DA644FDD20F6FFE7 /* hand_landmarker.task in Resources */,
+				C6F4D2ACCEC32CB3DB0D26DC /* Archivo-Bold.ttf in Resources */,
+				9F88505A31E286D5414FB251 /* ArchivoExpanded-Bold.ttf in Resources */,
+				55638109657CBED231665A26 /* ArchivoExpanded-ExtraBold.ttf in Resources */,
+				8DF368E2CAE915AE24026CA6 /* Archivo-Medium.ttf in Resources */,
+				25876E2217BE69A79AA234C4 /* Archivo-Regular.ttf in Resources */,
+				E35B9E46271ADDF2722B8808 /* Archivo-SemiBold.ttf in Resources */,
+				A5C1F0AD788A557FF16FAB54 /* IBMPlexMono-Medium.ttf in Resources */,
+				B4DFAAA185D3BE3B499B99D2 /* IBMPlexMono-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +573,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = "";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -544,6 +601,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CXX = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
@@ -563,6 +621,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD = "";
+				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -582,7 +642,14 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -590,6 +657,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = "";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -617,6 +685,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				CXX = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
@@ -629,6 +698,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD = "";
+				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -647,7 +718,13 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

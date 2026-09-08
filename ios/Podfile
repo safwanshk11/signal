@@ -23,6 +23,10 @@ target 'SignalApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  # Google MediaPipe Tasks Vision — on-device HandLandmarker used by
+  # ios/SignalApp/FrameProcessors/HandLandmarkerFrameProcessorPlugin.swift.
+  pod 'MediaPipeTasksVision', '0.10.14'
+
   target 'SignalAppTests' do
     inherit! :complete
     # Pods for testing
