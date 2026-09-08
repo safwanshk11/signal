@@ -158,7 +158,7 @@ export function RecognitionScreen(_props: Props) {
           )}
           <Button
             label={result ? 'Again' : 'Recognize'}
-            variant="signal"
+            variant="outline"
             onPress={handleRecognize}
             disabled={isRecording}
           />

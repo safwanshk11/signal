@@ -3,7 +3,7 @@ import {ActivityIndicator, Animated, Pressable, StyleSheet, Text, View} from 're
 import {colors, fontFamily, space} from '../theme';
 import {HardShadow} from './HardShadow';
 
-type Variant = 'primary' | 'secondary' | 'signal' | 'text';
+type Variant = 'primary' | 'secondary' | 'signal' | 'text' | 'outline';
 type Size = 'small' | 'medium' | 'large';
 
 type Props = {
@@ -54,10 +54,12 @@ export function Button({label, onPress, variant = 'primary', size = 'large', dis
     );
   }
 
-  const variantStyle = disabled ? styles.disabled : styles[variant];
+  const variantStyle = disabled
+    ? (variant === 'outline' ? styles.disabledOutline : styles.disabled)
+    : styles[variant];
   const labelStyle = disabled
     ? styles.disabledLabel
-    : variant === 'secondary'
+    : variant === 'secondary' || variant === 'outline'
     ? styles.inkLabel
     : styles.paperLabel;
 
@@ -81,7 +83,7 @@ export function Button({label, onPress, variant = 'primary', size = 'large', dis
           },
         ]}>
         {loading ? (
-          <ActivityIndicator color={variant === 'secondary' ? colors.ink : colors.paper} />
+          <ActivityIndicator color={variant === 'secondary' || variant === 'outline' ? colors.ink : colors.paper} />
         ) : (
           <Text style={[styles.label, {fontSize: sizing.fontSize}, labelStyle]}>{label}</Text>
         )}
@@ -89,7 +91,7 @@ export function Button({label, onPress, variant = 'primary', size = 'large', dis
     </Pressable>
   );
 
-  if (disabled || variant === 'secondary') {
+  if (disabled || variant === 'secondary' || variant === 'outline') {
     return <View>{body}</View>;
   }
 
@@ -110,6 +112,18 @@ const styles = StyleSheet.create({
     backgroundColor: colors.paperRaised,
     borderWidth: 1,
     borderColor: colors.ink,
+  },
+  outline: {
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: colors.ink,
+    borderRadius: 24,
+  },
+  disabledOutline: {
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: colors.line,
+    borderRadius: 24,
   },
   disabled: {backgroundColor: colors.line},
   label: {fontFamily: fontFamily.bodySemiBold, letterSpacing: 0.4},
