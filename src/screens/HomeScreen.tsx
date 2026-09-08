@@ -90,7 +90,7 @@ export function HomeScreen({navigation}: Props) {
         <Reveal delay={180} style={styles.actions}>
           <Button
             label="Start Recognizing"
-            variant="primary"
+            variant="outline"
             onPress={() => navigation.navigate('Recognition')}
           />
 
