@@ -11,7 +11,6 @@ import {UserSign} from '../ml/types';
 import {addSampleToSign, deleteSign, getSignById} from '../storage/signRepository';
 import {getQuizAttemptsForSign} from '../storage/quizRepository';
 import {Button} from '../components/Button';
-import {CameraFrame} from '../components/CameraFrame';
 import {StatBand} from '../components/StatBand';
 import {FlipCameraButton} from '../components/FlipCameraButton';
 import {colors, fontFamily, space, type} from '../theme';
@@ -84,7 +83,6 @@ export function SignDetailScreen({route, navigation}: Props) {
     return (
       <View style={styles.container}>
         <LandmarkCamera onFrame={recorder.pushFrame} position={cameraPosition} />
-        <CameraFrame recording={recorder.status === 'recording'} />
         <SafeAreaView style={styles.topControls} edges={['top']} pointerEvents="box-none">
           <FlipCameraButton
             onPress={() => setCameraPosition(p => (p === 'front' ? 'back' : 'front'))}
