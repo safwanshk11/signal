@@ -1,8 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
-  Easing,
-  Pressable,
   StyleSheet,
   Text,
   View,
@@ -19,6 +17,7 @@ import {addHistoryEntry} from '../storage/historyRepository';
 import {RecognitionResult} from '../ml/types';
 import {speak} from '../speech/speak';
 import {Stopwatch, logLatency} from '../utils/latency';
+import {Button} from '../components/Button';
 import {FlipCameraButton} from '../components/FlipCameraButton';
 import {ProgressBar} from '../components/ProgressBar';
 import {colors, fontFamily, space, type} from '../theme';
@@ -32,39 +31,9 @@ export function RecognitionScreen(_props: Props) {
   const [handPresent, setHandPresent] = useState(false);
   const isRecording = recorder.status === 'recording';
 
-  // Pulse animation for the idle FAB ring
-  const pulseAnim = useRef(new Animated.Value(1)).current;
-  const pulseLoop = useRef<Animated.CompositeAnimation | null>(null);
-
-  // Result card slide-in
+  // Result card slide-in animation
   const resultSlide = useRef(new Animated.Value(80)).current;
   const resultOpacity = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    if (!isRecording && !result) {
-      pulseLoop.current = Animated.loop(
-        Animated.sequence([
-          Animated.timing(pulseAnim, {
-            toValue: 1.18,
-            duration: 900,
-            easing: Easing.inOut(Easing.ease),
-            useNativeDriver: true,
-          }),
-          Animated.timing(pulseAnim, {
-            toValue: 1,
-            duration: 900,
-            easing: Easing.inOut(Easing.ease),
-            useNativeDriver: true,
-          }),
-        ]),
-      );
-      pulseLoop.current.start();
-    } else {
-      pulseLoop.current?.stop();
-      pulseAnim.setValue(1);
-    }
-    return () => pulseLoop.current?.stop();
-  }, [isRecording, result, pulseAnim]);
 
   useEffect(() => {
     if (result) {
@@ -124,23 +93,10 @@ export function RecognitionScreen(_props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recorder.status]);
 
-  const handleFabPress = () => {
-    if (result) {
-      // Second tap: clear result and ready for next
-      setResult(null);
-    } else if (!isRecording) {
-      recorder.start();
-    }
+  const handleRecognize = () => {
+    setResult(null);
+    recorder.start();
   };
-
-  const fabLabel = isRecording ? 'READING…' : result ? 'TAP AGAIN' : handPresent ? 'TAP TO READ' : 'SHOW HAND';
-  const fabSublabel = isRecording
-    ? 'Hold your sign steady'
-    : result
-    ? 'Clear & recognize again'
-    : handPresent
-    ? 'Hand detected'
-    : 'Raise your hand';
 
   return (
     <View style={styles.container}>
@@ -161,10 +117,7 @@ export function RecognitionScreen(_props: Props) {
         />
       </SafeAreaView>
 
-      {/* Recording progress bar at very top */}
-      <ProgressBar active={isRecording} durationMs={RECORDING_DURATION_MS} />
-
-      {/* Result card — slides up from bottom */}
+      {/* Result card — slides up from behind the bottom sheet */}
       {result && (
         <Animated.View
           style={[
@@ -189,41 +142,31 @@ export function RecognitionScreen(_props: Props) {
         </Animated.View>
       )}
 
-      {/* Floating Action Button */}
-      <SafeAreaView style={styles.fabArea} edges={['bottom']} pointerEvents="box-none">
-        <Pressable
-          onPress={handleFabPress}
-          disabled={isRecording}
-          style={({pressed}) => [{opacity: pressed ? 0.85 : 1}]}>
-          <View style={styles.fabWrapper}>
-            {/* Pulse ring — only visible when idle & no result */}
-            {!isRecording && !result && (
-              <Animated.View
-                style={[
-                  styles.fabRing,
-                  {transform: [{scale: pulseAnim}]},
-                ]}
-              />
-            )}
-            {/* Core button */}
-            <View
-              style={[
-                styles.fab,
-                isRecording && styles.fabRecording,
-                result && styles.fabResult,
-              ]}>
-              <Text style={styles.fabLabel}>{fabLabel}</Text>
+      {/* Bottom sheet — original style */}
+      <View style={styles.sheet}>
+        <ProgressBar active={isRecording} durationMs={RECORDING_DURATION_MS} />
+        <SafeAreaView style={styles.sheetBody} edges={['bottom']}>
+          {!result && (
+            <View style={styles.promptRow}>
+              <Text style={type.headingM}>
+                {isRecording ? 'Hold the sign…' : 'Show me a sign'}
+              </Text>
+              <Text style={[type.monoCaption, styles.hint]}>
+                {isRecording ? 'RECORDING' : handPresent ? 'READY' : 'RAISE YOUR HAND'}
+              </Text>
             </View>
-          </View>
-          <Text style={styles.fabSublabel}>{fabSublabel}</Text>
-        </Pressable>
-      </SafeAreaView>
+          )}
+          <Button
+            label={result ? 'Again' : 'Recognize'}
+            variant="signal"
+            onPress={handleRecognize}
+            disabled={isRecording}
+          />
+        </SafeAreaView>
+      </View>
     </View>
   );
 }
-
-const FAB_SIZE = 148;
-const RING_SIZE = FAB_SIZE + 28;
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: colors.ink},
@@ -256,10 +199,10 @@ const styles = StyleSheet.create({
     color: colors.paper,
   },
 
-  // Result card
+  // Result card — floats over the camera, above the sheet
   resultCard: {
     position: 'absolute',
-    top: '28%',
+    bottom: 180,
     left: space[6],
     right: space[6],
     backgroundColor: 'rgba(18,17,15,0.82)',
@@ -288,61 +231,17 @@ const styles = StyleSheet.create({
     letterSpacing: 0.4,
   },
 
-  // FAB
-  fabArea: {
+  // Bottom sheet — original
+  sheet: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    alignItems: 'center',
-    paddingBottom: space[8],
-    gap: space[3],
-  },
-  fabWrapper: {
-    width: RING_SIZE,
-    height: RING_SIZE,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  fabRing: {
-    position: 'absolute',
-    width: RING_SIZE,
-    height: RING_SIZE,
-    borderRadius: RING_SIZE / 2,
-    borderWidth: 2,
-    borderColor: 'rgba(224,225,17,0.35)',
-  },
-  fab: {
-    width: FAB_SIZE,
-    height: FAB_SIZE,
-    borderRadius: FAB_SIZE / 2,
-    backgroundColor: colors.spark,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 3,
-    borderColor: colors.ink,
-  },
-  fabRecording: {
-    backgroundColor: colors.signal,
-    borderColor: '#8B0000',
-  },
-  fabResult: {
     backgroundColor: colors.paperRaised,
-    borderColor: colors.ink,
+    borderTopWidth: 2,
+    borderTopColor: colors.ink,
   },
-  fabLabel: {
-    fontFamily: fontFamily.displayExtraBold,
-    fontSize: 13,
-    letterSpacing: 1.2,
-    color: colors.ink,
-    textAlign: 'center',
-  },
-  fabSublabel: {
-    fontFamily: fontFamily.mono,
-    fontSize: 11,
-    letterSpacing: 0.5,
-    color: 'rgba(247,245,240,0.55)',
-    textAlign: 'center',
-    marginTop: space[2],
-  },
+  sheetBody: {padding: space[6], gap: space[4]},
+  promptRow: {gap: space[1]},
+  hint: {color: colors.ink300},
 });
