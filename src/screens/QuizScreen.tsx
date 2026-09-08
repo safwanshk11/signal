@@ -13,6 +13,7 @@ import {getAllSigns} from '../storage/signRepository';
 import {addQuizAttempt} from '../storage/quizRepository';
 import {speak} from '../speech/speak';
 import {Button} from '../components/Button';
+import {CameraFrame} from '../components/CameraFrame';
 import {StatBand} from '../components/StatBand';
 import {FlipCameraButton} from '../components/FlipCameraButton';
 import {ProgressBar} from '../components/ProgressBar';
@@ -92,6 +93,7 @@ export function QuizScreen({navigation}: Props) {
   return (
     <View style={styles.container}>
       <LandmarkCamera onFrame={recorder.pushFrame} position={cameraPosition} />
+      <CameraFrame />
 
       <SafeAreaView style={styles.topControls} edges={['top']} pointerEvents="box-none">
         <FlipCameraButton

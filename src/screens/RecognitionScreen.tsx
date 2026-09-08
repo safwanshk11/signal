@@ -18,6 +18,7 @@ import {RecognitionResult} from '../ml/types';
 import {speak} from '../speech/speak';
 import {Stopwatch, logLatency} from '../utils/latency';
 import {Button} from '../components/Button';
+import {CameraFrame} from '../components/CameraFrame';
 import {FlipCameraButton} from '../components/FlipCameraButton';
 import {ProgressBar} from '../components/ProgressBar';
 import {colors, fontFamily, space, type} from '../theme';
@@ -105,6 +106,7 @@ export function RecognitionScreen(_props: Props) {
         position={cameraPosition}
         onHandPresenceChange={setHandPresent}
       />
+      <CameraFrame />
 
       {/* Top bar */}
       <SafeAreaView style={styles.topBar} edges={['top']} pointerEvents="box-none">
