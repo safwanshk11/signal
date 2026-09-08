@@ -71,10 +71,13 @@ export function AddSignScreen({navigation}: Props) {
             style={[type.bodyL, styles.input]}
             value={label}
             onChangeText={setLabel}
-            placeholder="e.g. Water"
-            placeholderTextColor={colors.ink300}
             autoFocus
+            autoCapitalize="words"
+            autoCorrect={false}
           />
+          {!label.trim() && (
+            <Text style={styles.inputHint}>start typing…</Text>
+          )}
         </View>
         <Button label="Next" onPress={() => setStep('record')} disabled={!label.trim()} />
       </SafeAreaView>
@@ -168,10 +171,17 @@ const styles = StyleSheet.create({
   rule: {height: 2, backgroundColor: colors.ink, marginTop: space[6], marginBottom: space[6]},
   label: {marginBottom: space[2]},
   input: {
-    borderWidth: 1,
-    borderColor: colors.line,
-    backgroundColor: colors.paperRaised,
-    padding: space[4],
+    borderBottomWidth: 2,
+    borderBottomColor: colors.ink,
+    paddingVertical: space[3],
+    paddingHorizontal: 0,
+  },
+  inputHint: {
+    fontFamily: fontFamily.mono,
+    fontSize: 13,
+    color: colors.ink300,
+    marginTop: space[1],
+    letterSpacing: 0.3,
   },
   cameraContainer: {flex: 1, backgroundColor: colors.ink},
   topControls: {
