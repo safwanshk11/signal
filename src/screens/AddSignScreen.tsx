@@ -10,6 +10,7 @@ import {GestureSample} from '../ml/types';
 import {createSign} from '../storage/signRepository';
 import {Stopwatch} from '../utils/latency';
 import {Button} from '../components/Button';
+import {CameraFrame} from '../components/CameraFrame';
 import {Tag} from '../components/Tag';
 import {FlipCameraButton} from '../components/FlipCameraButton';
 import {ProgressBar} from '../components/ProgressBar';
@@ -93,6 +94,7 @@ export function AddSignScreen({navigation}: Props) {
           position={cameraPosition}
           onHandPresenceChange={setHandPresent}
         />
+        <CameraFrame active={handPresent} recording={isRecording} />
         <SafeAreaView style={styles.topControls} edges={['top']} pointerEvents="box-none">
           <View style={styles.statusPill}>
             <View style={[styles.statusDot, {backgroundColor: handPresent ? colors.spark : colors.ink300}]} />

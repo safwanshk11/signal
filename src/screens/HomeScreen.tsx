@@ -21,7 +21,7 @@ export function HomeScreen({navigation}: Props) {
   useFocusEffect(
     useCallback(() => {
       setSigns(getAllSigns());
-      setLastEntry(getHistory()[0] ?? null);
+      setLastEntry(getHistory().find(e => e.label !== null) ?? null);
     }, []),
   );
 
@@ -57,8 +57,8 @@ export function HomeScreen({navigation}: Props) {
         </View>
 
         {lastEntry && (
-          <Text style={lastEntry.label ? styles.teaserLabel : styles.teaserNotSure}>
-            {lastEntry.label ? lastEntry.label.toUpperCase() : 'NOT SURE'}
+          <Text style={styles.teaserLabel}>
+            {lastEntry.label!.toUpperCase()}
           </Text>
         )}
 
