@@ -1,7 +1,6 @@
 import React, {useRef} from 'react';
 import {ActivityIndicator, Animated, Pressable, StyleSheet, Text, View} from 'react-native';
 import {colors, fontFamily, space} from '../theme';
-import {HardShadow} from './HardShadow';
 
 type Variant = 'primary' | 'secondary' | 'signal' | 'text' | 'outline';
 type Size = 'small' | 'medium' | 'large';
@@ -15,23 +14,25 @@ type Props = {
   loading?: boolean;
 };
 
-// 44px minimum hit target per the design system's button spec, regardless
-// of visual size.
 const MIN_HIT_TARGET = 44;
-const SHADOW_OFFSET = space[2];
 
 const sizeStyles: Record<Size, {paddingVertical: number; paddingHorizontal: number; fontSize: number}> = {
-  small: {paddingVertical: space[2], paddingHorizontal: space[3], fontSize: 13},
-  medium: {paddingVertical: space[3], paddingHorizontal: space[4], fontSize: 15},
-  large: {paddingVertical: space[4], paddingHorizontal: space[6], fontSize: 17},
+  small: {paddingVertical: space[2], paddingHorizontal: space[4], fontSize: 13},
+  medium: {paddingVertical: space[3], paddingHorizontal: space[5], fontSize: 15},
+  large: {paddingVertical: space[4], paddingHorizontal: space[6], fontSize: 16},
 };
 
 export function Button({label, onPress, variant = 'primary', size = 'large', disabled, loading}: Props) {
   const sizing = sizeStyles[size];
-  const press = useRef(new Animated.Value(0)).current;
+  const scale = useRef(new Animated.Value(1)).current;
 
-  const animateTo = (value: number) => {
-    Animated.spring(press, {toValue: value, useNativeDriver: true, speed: 40, bounciness: 0}).start();
+  const animateTo = (toValue: number) => {
+    Animated.spring(scale, {
+      toValue,
+      useNativeDriver: true,
+      speed: 50,
+      bounciness: 4,
+    }).start();
   };
 
   if (variant === 'text') {
@@ -39,14 +40,14 @@ export function Button({label, onPress, variant = 'primary', size = 'large', dis
       <Pressable
         onPress={onPress}
         disabled={disabled || loading}
-        onPressIn={() => animateTo(1)}
-        onPressOut={() => animateTo(0)}
+        onPressIn={() => animateTo(0.95)}
+        onPressOut={() => animateTo(1)}
         style={[styles.textButton, {minHeight: MIN_HIT_TARGET}]}>
         <Animated.Text
           style={[
             styles.textLabel,
             disabled && styles.disabledText,
-            {opacity: press.interpolate({inputRange: [0, 1], outputRange: [1, 0.5]})},
+            {transform: [{scale}]},
           ]}>
           {label} →
         </Animated.Text>
@@ -55,22 +56,21 @@ export function Button({label, onPress, variant = 'primary', size = 'large', dis
   }
 
   const variantStyle = disabled
-    ? (variant === 'outline' ? styles.disabledOutline : styles.disabled)
+    ? (variant === 'outline' || variant === 'secondary' ? styles.disabledOutline : styles.disabled)
     : styles[variant];
+
   const labelStyle = disabled
     ? styles.disabledLabel
     : variant === 'secondary' || variant === 'outline'
     ? styles.inkLabel
     : styles.paperLabel;
 
-  const translate = press.interpolate({inputRange: [0, 1], outputRange: [0, SHADOW_OFFSET]});
-
-  const body = (
+  return (
     <Pressable
       onPress={onPress}
       disabled={disabled || loading}
-      onPressIn={() => animateTo(1)}
-      onPressOut={() => animateTo(0)}>
+      onPressIn={() => animateTo(0.97)}
+      onPressOut={() => animateTo(1)}>
       <Animated.View
         style={[
           styles.base,
@@ -79,7 +79,7 @@ export function Button({label, onPress, variant = 'primary', size = 'large', dis
             paddingVertical: sizing.paddingVertical,
             paddingHorizontal: sizing.paddingHorizontal,
             minHeight: MIN_HIT_TARGET,
-            transform: [{translateX: translate}, {translateY: translate}],
+            transform: [{scale}],
           },
         ]}>
         {loading ? (
@@ -90,43 +90,48 @@ export function Button({label, onPress, variant = 'primary', size = 'large', dis
       </Animated.View>
     </Pressable>
   );
-
-  if (disabled || variant === 'secondary' || variant === 'outline') {
-    return <View>{body}</View>;
-  }
-
-  // The button visually "pushes into" its own hard shadow on press —
-  // the content translates toward the shadow instead of just dimming.
-  return <HardShadow>{body}</HardShadow>;
 }
 
 const styles = StyleSheet.create({
   base: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 0,
+    borderRadius: 24,
   },
-  primary: {backgroundColor: colors.ink},
-  signal: {backgroundColor: colors.signal},
+  primary: {
+    backgroundColor: colors.ink,
+    borderWidth: 2,
+    borderColor: colors.ink,
+  },
+  signal: {
+    backgroundColor: colors.signal,
+    borderWidth: 2,
+    borderColor: colors.signal,
+  },
   secondary: {
-    backgroundColor: colors.paperRaised,
-    borderWidth: 1,
+    backgroundColor: 'transparent',
+    borderWidth: 2,
     borderColor: colors.ink,
   },
   outline: {
     backgroundColor: 'transparent',
     borderWidth: 2,
     borderColor: colors.ink,
-    borderRadius: 24,
   },
   disabledOutline: {
     backgroundColor: 'transparent',
     borderWidth: 2,
     borderColor: colors.line,
-    borderRadius: 24,
   },
-  disabled: {backgroundColor: colors.line},
-  label: {fontFamily: fontFamily.bodySemiBold, letterSpacing: 0.4},
+  disabled: {
+    backgroundColor: colors.line,
+    borderWidth: 2,
+    borderColor: colors.line,
+  },
+  label: {
+    fontFamily: fontFamily.bodySemiBold,
+    letterSpacing: 0.4,
+  },
   paperLabel: {color: colors.paper},
   inkLabel: {color: colors.ink},
   disabledLabel: {color: colors.ink300},
